@@ -42,6 +42,16 @@ class SchoolMgSys:
         }
         with open("names.json", "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2)
+            
+        def load(self):
+        try:
+            with open("names.json", "r", encoding= "utf-8") as f:
+                data = json.load(f)
+                self.students_info = data.get("students", {})
+                self.teachers_info = data.get("teachers", {})
+        except FileNotFoundError:
+            self.students_info = {}
+            self.teachers_info = {}
 
 
     def admission(self):
